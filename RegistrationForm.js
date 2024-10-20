@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ function RegistrationForm() {
     password: '',
   });
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({
@@ -23,20 +23,19 @@ function RegistrationForm() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8001/api/register', formData);
-      setMessage(response.data); // Set the success message
+      setMessage(response.data); 
       setFormData({
         name: '',
         email: '',
         phone: '',
         password: '',
-      }); // Clear the form fields
+      }); 
       
-      // Navigate to the login page after successful registration
       navigate('/login');
       
     } catch (error) {
       console.error(error);
-      setMessage('Failed to register user'); // Set the error message
+      setMessage('Failed to register user'); 
     }
   };
 
@@ -61,7 +60,7 @@ function RegistrationForm() {
         </div>
         <button type="submit">Register</button>
       </form>
-      {message && <p>{message}</p>} {/* Display feedback message */}
+      {message && <p>{message}</p>} 
     </div>
   );
 }
