@@ -21,19 +21,22 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8001/api/login', formData);
-      setMessage(response.data); 
-      setFormData({
-        email: '',
-        password: '',
-      }); 
-
+      const { userId, username, message } = response.data;
+  
+      setMessage(message);
+      setFormData({ email: '', password: '' });
+  
+      // Store userId and username in localStorage
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('username', username);
+  
       navigate('/home');
-
     } catch (error) {
       console.error(error);
-      setMessage('Login failed'); 
+      setMessage('Login failed');
     }
   };
+  
 
   return (
     <div>
