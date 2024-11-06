@@ -6,14 +6,13 @@ const CreateOrder = () => {
     dropOffLocation: '',
     packageDetails: '',
     deliveryTime: '',
-    status: 'Pending', // Initialize with default status
+    status: 'Pending', 
   });
 
   const [message, setMessage] = useState('');
-  const userId = localStorage.getItem("userId"); // Retrieve userId from localStorage
+  const userId = localStorage.getItem("userId"); 
 
-  // Check if userId is present in localStorage
-  console.log("userId from localStorage:", userId); // Debugging step
+  console.log("userId from localStorage:", userId); 
 
   const handleChange = (e) => {
     setFormData({
@@ -35,15 +34,14 @@ const CreateOrder = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "userId": userId, // Pass userId in headers
+        "userId": userId, 
       },
       body: JSON.stringify(formData),
     })
       .then((response) => {
         if (!response.ok) {
-          // Enhanced error handling for specific status codes
           return response.text().then(text => {
-            console.error(`Error ${response.status}: ${text}`); // Log error details
+            console.error(`Error ${response.status}: ${text}`); 
             if (response.status === 400) {
               setMessage("Bad Request - Please check your input.");
             } else if (response.status === 401) {
@@ -69,7 +67,7 @@ const CreateOrder = () => {
         });
       })
       .catch((error) => {
-        console.error("Error:", error); // Log the caught error
+        console.error("Error:", error);
         setMessage("An error occurred. Please try again.");
       });
   };
@@ -123,7 +121,7 @@ const CreateOrder = () => {
             name="status"
             value={formData.status}
             onChange={handleChange}
-            disabled // Delivery status is initially set, so keep it disabled
+            disabled 
           />
         </div>
         <button style={styles.button} type="submit">Create Order</button>
