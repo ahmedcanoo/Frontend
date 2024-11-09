@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function CourierDashboard() {
   const [courierName, setCourierName] = useState('');
-  
+  const navigate = useNavigate(); 
+
   useEffect(() => {
-    const courier = localStorage.getItem('courierName'); // Assume courier's name is stored in localStorage upon login
+    const courier = localStorage.getItem('courierName'); 
     if (courier) {
       setCourierName(courier);
     } else {
-      // Handle case where courier name is not found (e.g., redirect to login)
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('courierName');
     localStorage.removeItem('courierEmail');
-    // Redirect to login page or homepage
+    navigate('/'); 
   };
 
   return (
