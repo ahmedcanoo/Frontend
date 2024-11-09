@@ -1,7 +1,6 @@
-/* Cancel button default style */
 .cancel-button {
     padding: 10px 20px;
-    background-color:  #d9534f;/* Default grey */
+    background-color:  #d9534f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -9,12 +8,10 @@
     font-size: 14px;
   }
   
-  /* Red color when button is clicked */
   .cancel-button.active {
-    background-color: #d9534f; /* Red */
+    background-color: #d9534f; 
   }
   
-  /* Modal overlay */
   .modal {
     position: fixed;
     top: 0;
@@ -28,7 +25,6 @@
     z-index: 1000;
   }
   
-  /* Modal content */
   .modal-content {
     background-color: white;
     padding: 20px;
@@ -38,10 +34,9 @@
     max-width: 400px;
   }
   
-  /* Buttons inside the modal */
   .confirm-button-red {
     padding: 10px 20px;
-    background-color: #d9534f; /* Red */
+    background-color: #d9534f; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -51,7 +46,7 @@
   
   .cancel-button {
     padding: 10px 20px;
-    background-color: #ccc; /* Grey */
+    background-color: #ccc;
     color: white;
     border: none;
     border-radius: 5px;
