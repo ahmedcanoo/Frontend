@@ -1,14 +1,11 @@
-// Import necessary libraries and initialize Express
 const express = require('express');
 const app = express();
-const Order = require('./models/Order'); // Assuming a Mongoose model for orders
-const Courier = require('./models/Courier'); // Assuming a Mongoose model for couriers
-
+const Order = require('./models/Order'); 
+const Courier = require('./models/Courier');
 app.use(express.json());
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/admin', adminRoutes);
 
-// Fetch all assigned orders (Route 1)
 app.get('/api/admin/assigned-orders', async (req, res) => {
   try {
     const assignedOrders = await Order.find({ courierEmail: { $ne: "" } });
@@ -28,7 +25,6 @@ app.get('/api/couriers', async (req, res) => {
     }
   });
   
-// Reassign an order to a new courier (Route 2)
 app.put('/api/admin/orders/:orderId/reassign-courier', async (req, res) => {
   const { orderId } = req.params;
   const { email } = req.body;
@@ -59,24 +55,20 @@ app.put('/api/orders/:orderId/update-status', async (req, res) => {
     const { orderId } = req.params;
     const { status, email } = req.body;
 
-    // Check if the status transition is valid
     const validStatuses = ['Pending Acceptance', 'In Transit', 'Picked Up', 'Delivered'];
     if (!validStatuses.includes(status)) {
       return res.status(400).send('Invalid status');
     }
 
-    // Fetch the order
     const order = await Order.findById(orderId);
     if (!order) {
       return res.status(404).send('Order not found');
     }
 
-    // Additional validation or rules can be added here based on business logic
     if (order.status === 'Delivered' && status !== 'Delivered') {
       return res.status(400).send('Cannot revert status after delivery');
     }
 
-    // Update order status
     order.status = status;
     await order.save();
 
@@ -87,7 +79,6 @@ app.put('/api/orders/:orderId/update-status', async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(8001, () => {
   console.log("Server is running on port 8001");
 });
