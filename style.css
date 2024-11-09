@@ -1,4 +1,4 @@
-/* General page styling */
+
 body, html {
   margin: 0;
   padding: 0;
@@ -136,10 +136,6 @@ body, html {
   transition: background-color 0.3s;
 }
 
-
-
-
-
 .primary-button {
   padding: 10px 20px;
   font-size: 1em;
@@ -156,22 +152,4 @@ body, html {
   background-color: #2980b9;
 }
 
-.message {
-  margin-top: 15px;
-  color: #e74c3c;
-  font-size: 0.9em;
-}
 
-.register-link {
-  margin-top: 20px;
-  font-size: 0.9em;
-}
-
-.register-link a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
