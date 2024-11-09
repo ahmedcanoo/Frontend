@@ -9,7 +9,7 @@ function UpdateOrderStatus({ order, closeModal }) {
       const response = await axios.put(`http://localhost:8001/api/admin/orders/${order._id}/status`, { status });
       console.log('Order updated:', response.data);
       alert('Order status updated successfully!');
-      closeModal();  // Close modal after successful update
+      closeModal();  
     } catch (error) {
       console.error("Error updating order:", error);
       alert('Failed to update order. Please try again.');
