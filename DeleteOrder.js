@@ -7,7 +7,7 @@ function DeleteOrder({ order, closeModal }) {
       const response = await axios.delete(`http://localhost:8001/api/admin/orders/${order._id}`);
       console.log('Order deleted:', response.data);
       alert('Order deleted successfully!');
-      closeModal();  // Close modal after successful delete
+      closeModal();  
     } catch (error) {
       console.error("Error deleting order:", error);
       alert('Failed to delete order. Please try again.');
