@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './style.css';
 
 function CourierLogin() {
   const [formData, setFormData] = useState({
@@ -26,10 +27,8 @@ function CourierLogin() {
       setMessage(message);
       setFormData({ email: '', password: '' });
 
-      // Store the username in localStorage (no need to store userId)
       localStorage.setItem('username', username);
 
-      // Redirect to the home page after successful login
       navigate('/home');
     } catch (error) {
       console.error(error);
@@ -38,19 +37,39 @@ function CourierLogin() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="login-page">
+      <div className="login-panel">
+        <h2>Courier Login</h2>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email:</label>
+            <input 
+              type="email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange} 
+              placeholder='Enter your email'
+              required 
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input 
+              type="password" 
+              name="password" 
+              value={formData.password} 
+              onChange={handleChange} 
+              placeholder='Enter your password'
+              required 
+            />
+          </div>
+          <button type="submit" className="primary-button">Login</button>
+        </form>
+        {message && <p className="message">{message}</p>}
+        <p className="register-link">
+          Don’t have an account? <a href="/register-courier">Register here</a>
+        </p>
+      </div>
     </div>
   );
 }
