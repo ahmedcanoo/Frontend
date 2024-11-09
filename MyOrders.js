@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './MyOrders.css';  
 
 const MyOrders = () => {
-  const [orders, setOrders] = useState([]); // Initialize orders as an empty array
+  const [orders, setOrders] = useState([]);
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const MyOrders = () => {
       })
         .then(response => response.json())
         .then(data => {
-          setOrders(data || []); // Ensure data is an array, default to empty array if null
+          setOrders(data || []); 
         })
         .catch(error => {
           console.error('Error fetching orders:', error);
